@@ -16,6 +16,7 @@ class GameLoader extends React.Component {
     return (
       <div className="game-loader">
         <h1>Jeopardy Player</h1>
+        <p>Designed by Brian Yu</p>
         <input type="file" name="file" onChange={this.gameLoadedHandler}/>
       </div>
     );

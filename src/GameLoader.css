@@ -3,6 +3,16 @@
 }
 
 .game-loader h1 {
-    font-family: 'Korinna-Bold', sans-serif;
+    font-family: 'Korinna-Bold', serif;
     font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.game-loader p {
+    font-size: 20px;
+    font-family: 'Korinna-Bold', serif;
+}
+
+.game-loader input {
+    margin-top: 50px;
 }
