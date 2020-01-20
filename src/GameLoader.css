@@ -1,0 +1,8 @@
+.game-loader {
+    text-align: center;
+}
+
+.game-loader h1 {
+    font-family: 'Korinna-Bold', sans-serif;
+    font-size: 60px;
+}

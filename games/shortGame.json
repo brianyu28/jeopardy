@@ -1,0 +1,73 @@
+{
+    "game": {
+        "single": [
+            {
+                "category": "Single Category 1",
+                "clues": [
+                    {
+                        "value": 200,
+                        "clue": "This is clue 1.1",
+                        "solution": "This is solution 1.1"
+                    },
+                    {
+                        "value": 400,
+                        "clue": "This is clue 1.2",
+                        "solution": "This is solution 1.2"
+                    }
+                ]
+            },
+            {
+                "category": "Single Category 2",
+                "clues": [
+                    {
+                        "value": 200,
+                        "clue": "This is clue 2.1",
+                        "solution": "This is solution 2.1"
+                    },
+                    {
+                        "value": 400,
+                        "clue": "This is clue 2.2",
+                        "solution": "This is solution 2.2"
+                    }
+                ]
+            }
+        ],
+        "double": [
+            {
+                "category": "Double Category 1",
+                "clues": [
+                    {
+                        "value": 400,
+                        "clue": "This is double clue 1.1",
+                        "solution": "This is double solution 1.1"
+                    },
+                    {
+                        "value": 800,
+                        "clue": "This is double clue 1.2",
+                        "solution": "This is double solution 1.2"
+                    }
+                ]
+            },
+            {
+                "category": "Double Category 2",
+                "clues": [
+                    {
+                        "value": 400,
+                        "clue": "This is double clue 2.1",
+                        "solution": "This is double solution 2.1"
+                    },
+                    {
+                        "value": 800,
+                        "clue": "This is double clue 2.2",
+                        "solution": "This is double solution 2.2"
+                    }
+                ]
+            }
+        ],
+        "final": {
+            "category": "Final Category",
+            "clue": "This is the final jeopardy clue.",
+            "solution": "This is the final jeopardy solution!"
+        }
+    }
+}

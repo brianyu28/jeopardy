@@ -1,0 +1,44 @@
+.scoreboard {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: flex-start;
+}
+
+.podium {
+    background-color: #001699;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 28px;
+    padding: 10px;
+    min-width: 200px;
+    border-radius: 5px;
+}
+
+.correct-answer, .incorrect-answer {
+    min-width: 65px;
+    height: 30px;
+    padding: 2px;
+    margin: 10px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 18px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.correct-answer {
+    background-color: #21942a;
+}
+
+.incorrect-answer {
+    background-color: #b53f18;
+}
+
+.stats {
+    font-size: 18px;
+}
