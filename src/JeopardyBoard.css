@@ -22,7 +22,8 @@ td {
 
 td.category-title {
     font-family: 'Swiss921', sans-serif;
-    font-size: 30px;
+    font-size: 28px;
+    text-transform: uppercase;
 }
 
 td.board-clue {
@@ -49,6 +50,8 @@ td.board-clue {
     font-size: 50px;
     width: 100%;
     min-height: 500px;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
 .final-category {
