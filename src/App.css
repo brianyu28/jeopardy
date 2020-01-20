@@ -13,3 +13,10 @@
     margin-bottom: 10px;
     display: block;
 }
+
+.download {
+    background-color: #404040;
+    border: none;
+    margin-top: 100px;
+    border-radius: 3px;
+}

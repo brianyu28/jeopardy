@@ -95,6 +95,7 @@ class App extends React.Component {
             wagering={currentCategory !== null && currentClue !== null && board[currentCategory].clues[currentClue].dailyDouble === true}
             stats={false}
           />
+          <button onClick={this.downloadGame} className="download">Download Game</button>
         </div>
       )
     } else if (this.state.round === "final") {
@@ -112,6 +113,7 @@ class App extends React.Component {
             wagering={true}
             stats={false}
           />
+          <button onClick={this.downloadGame} className="download">Download Game</button>
         </div>
       );
     } else if (this.state.round === "done") {
@@ -124,6 +126,7 @@ class App extends React.Component {
             wagering={false}
             stats={true}
           />
+          <button onClick={this.downloadGame} className="download">Download Game</button>
         </div>
       );
     }
@@ -155,6 +158,19 @@ class App extends React.Component {
     })
   }
 
+  downloadGame = () => {
+    const element = document.createElement("a");
+    const file = new Blob([JSON.stringify({
+      game: this.state.game,
+      players: this.state.players,
+      round: this.state.round
+    }, null, 4)], {type: "text/plain"});
+    element.href = URL.createObjectURL(file);
+    element.download = "game.json";
+    document.body.appendChild(element);
+    element.click();
+  }
+
   finishGame = () => {
     this.setState({
       round: "done"
@@ -180,9 +196,12 @@ class App extends React.Component {
   }
 
   updateGame = (data) => {
-    this.setState({
-      game: data.game
-    });
+    this.setState(state => ({
+      game: data.game,
+      players: data.players !== undefined ? data.players : state.players,
+      round: data.round !== undefined ? data.round : state.round,
+      playing: data.players !== undefined
+    }));
   }
 
   updateScore = (player, value, correct) => {
