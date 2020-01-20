@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/jeopardy/static/css/main.1f4e2f9a.chunk.css",
-    "main.js": "/jeopardy/static/js/main.984fae9a.chunk.js",
-    "main.js.map": "/jeopardy/static/js/main.984fae9a.chunk.js.map",
-    "runtime-main.js": "/jeopardy/static/js/runtime-main.795492d8.js",
-    "runtime-main.js.map": "/jeopardy/static/js/runtime-main.795492d8.js.map",
-    "static/js/2.016507e1.chunk.js": "/jeopardy/static/js/2.016507e1.chunk.js",
-    "static/js/2.016507e1.chunk.js.map": "/jeopardy/static/js/2.016507e1.chunk.js.map",
-    "index.html": "/jeopardy/index.html",
-    "precache-manifest.5017db7572b418dfeb3e3689c25fe4ed.js": "/jeopardy/precache-manifest.5017db7572b418dfeb3e3689c25fe4ed.js",
-    "service-worker.js": "/jeopardy/service-worker.js",
-    "static/css/main.1f4e2f9a.chunk.css.map": "/jeopardy/static/css/main.1f4e2f9a.chunk.css.map",
-    "static/js/2.016507e1.chunk.js.LICENSE": "/jeopardy/static/js/2.016507e1.chunk.js.LICENSE",
-    "static/media/Swiss921-BT_43276.ttf": "/jeopardy/static/media/Swiss921-BT_43276.6433bfa5.ttf",
-    "static/media/korinn.ttf": "/jeopardy/static/media/korinn.d5d36d20.ttf"
+    "main.css": "/static/css/main.2745b057.chunk.css",
+    "main.js": "/static/js/main.984fae9a.chunk.js",
+    "main.js.map": "/static/js/main.984fae9a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9f2a7a7d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9f2a7a7d.js.map",
+    "static/js/2.016507e1.chunk.js": "/static/js/2.016507e1.chunk.js",
+    "static/js/2.016507e1.chunk.js.map": "/static/js/2.016507e1.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.674a818a1a9b486e3af444e314096adf.js": "/precache-manifest.674a818a1a9b486e3af444e314096adf.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.2745b057.chunk.css.map": "/static/css/main.2745b057.chunk.css.map",
+    "static/js/2.016507e1.chunk.js.LICENSE": "/static/js/2.016507e1.chunk.js.LICENSE",
+    "static/media/Swiss921-BT_43276.ttf": "/static/media/Swiss921-BT_43276.6433bfa5.ttf",
+    "static/media/korinn.ttf": "/static/media/korinn.d5d36d20.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.795492d8.js",
+    "static/js/runtime-main.9f2a7a7d.js",
     "static/js/2.016507e1.chunk.js",
-    "static/css/main.1f4e2f9a.chunk.css",
+    "static/css/main.2745b057.chunk.css",
     "static/js/main.984fae9a.chunk.js"
   ]
 }
