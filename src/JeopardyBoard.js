@@ -79,6 +79,7 @@ class JeopardyBoard extends React.Component {
         <div className={showDailyDoubleScreen ? "clue-display daily-double" : "clue-display"}>
             <br/>
             {showDailyDoubleScreen ? "Daily Double" : 
+             clue.html === true ? <div dangerouslySetInnerHTML={{ __html: this.state.solution ? clue.solution : clue.clue}} /> :
              this.state.solution ? clue.solution : clue.clue}
         </div>
       </div>
@@ -92,7 +93,7 @@ class JeopardyBoard extends React.Component {
     }
     const clue = board[currentCategory].clues[currentClue];
 
-    if (event.key === " ") {
+    if (event.key === " " || event.key === "Enter") {
       
       // If we just showed the Daily Double screen, switch to the clue
       if (clue.dailyDouble && !this.state.dailyDoubleScreenPresented) {

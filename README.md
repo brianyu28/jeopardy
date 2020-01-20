@@ -12,6 +12,7 @@
       * A `clue` key that contains the clue
       * A `solution` key that contains the solution
       * An optional `dailyDouble` key, set to `true` if the clue is a daily double
+      * An optional `html` tag to treat the clue and solution text as HTML
       * An optional `chosen` key, set to `true` if the clue has already been chosen (should be omitted if starting game from the beginning)
   * A `double` key that contains an array of categories, structured like the `single` round.
   * A `final` key that contains an object with:

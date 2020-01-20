@@ -33,7 +33,8 @@ class FinalJeopardy extends React.Component {
     return (
       <div className="clue">
         <div className="clue-display">
-          {solution ? final.solution : final.clue}
+          {final.html === true ? <div dangerouslySetInnerHTML={{ __html: solution ? final.solution : final.clue }} /> :
+           solution ? final.solution : final.clue}
         </div>
       </div>
     )
@@ -42,7 +43,7 @@ class FinalJeopardy extends React.Component {
   clueKeyPress = (event) => {
     const { category, solution } = this.state;
 
-    if (event.key === " ") {
+    if (event.key === " " || event.key === "Enter") {
         if (category) {
           this.setState({
             category: false,
