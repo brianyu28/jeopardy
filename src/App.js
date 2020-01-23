@@ -98,7 +98,7 @@ class App extends React.Component {
             wagering={currentCategory !== null && currentClue !== null && board[currentCategory].clues[currentClue].dailyDouble === true}
             stats={false}
           />
-          <button onClick={this.downloadGame} className="download">Download Game</button>
+          <button onClick={this.downloadGame} className="download">Download Game in Progress</button>
         </div>
       )
     } else if (this.state.round === "final") {
@@ -116,7 +116,7 @@ class App extends React.Component {
             wagering={true}
             stats={false}
           />
-          <button onClick={this.downloadGame} className="download">Download Game</button>
+          <button onClick={this.downloadGame} className="download">Download Game in Progress</button>
         </div>
       );
     } else if (this.state.round === "done") {
@@ -129,7 +129,7 @@ class App extends React.Component {
             wagering={false}
             stats={true}
           />
-          <button onClick={this.downloadGame} className="download">Download Game</button>
+          <button onClick={this.downloadGame} className="download">Download Game Result</button>
         </div>
       );
     }

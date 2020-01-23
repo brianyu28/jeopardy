@@ -80,7 +80,7 @@ class JeopardyBoard extends React.Component {
   renderClue(categoryName, clue, value) {
     const showDailyDoubleScreen = clue.dailyDouble && !this.state.dailyDoubleScreenPresented;
     return (
-      <div className="clue">
+      <div onClick={showDailyDoubleScreen ? this.switchDDToClue : this.state.solution ? this.backToBoard : this.toggleSolution} className="clue">
         <div className="clue-category-label">
           {categoryName} - ${clue.value}
         </div>
@@ -97,7 +97,7 @@ class JeopardyBoard extends React.Component {
   renderCategory(index) {
     const { board } = this.props;
     return (
-      <div className="category-container">
+      <div onClick={this.renderNextCategory} className="category-container">
         <TransitionGroup>
           <CSSTransition
             key={index}
@@ -132,27 +132,41 @@ class JeopardyBoard extends React.Component {
       
       // If we just showed the Daily Double screen, switch to the clue
       if (clue.dailyDouble && !this.state.dailyDoubleScreenPresented) {
-        this.setState({
-          dailyDoubleScreenPresented: true,
-          solution: false
-        });
-
-      // Otherwise, toggle between question and solution
+        this.switchDDToClue();
       } else {
-        this.setState(state => {
-          return {
-            solution: !state.solution
-          }
-        });
+        this.toggleSolution();
       }
+
     } else if (event.key === "Escape") {
-      this.setState({
-        solution: false,
-        dailyDoubleScreenPresented: false
-      })
-      this.props.backToBoard();
+      this.backToBoard();
     }
   }
+
+  renderNextCategory = () => {
+    this.props.categoryShown();
+  }
+
+  switchDDToClue = () => {
+    this.setState({
+      dailyDoubleScreenPresented: true,
+      solution: false
+    });
+  }
+
+  backToBoard = () => {
+    this.setState({
+      solution: false,
+      dailyDoubleScreenPresented: false
+    });
+    this.props.backToBoard();
+  }
+
+  toggleSolution = () => {
+    this.setState(state => ({
+      solution: !state.solution
+    }));
+  }
+
 }
 
 export default JeopardyBoard;

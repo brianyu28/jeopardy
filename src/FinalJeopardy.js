@@ -23,7 +23,7 @@ class FinalJeopardy extends React.Component {
 
     if (category) {
       return (
-        <div className="clue">
+        <div onClick={this.showClue} className="clue">
           <div className="clue-display final-category">
             {final.category}
           </div>
@@ -31,7 +31,7 @@ class FinalJeopardy extends React.Component {
       )
     }
     return (
-      <div className="clue">
+      <div onClick={solution ? this.props.finishGame : this.toggleSolution} className="clue">
         <div className="clue-display">
           {final.html === true ? <div dangerouslySetInnerHTML={{ __html: solution ? final.solution : final.clue }} /> :
            solution ? final.solution : final.clue}
@@ -45,18 +45,26 @@ class FinalJeopardy extends React.Component {
 
     if (event.key === " " || event.key === "Enter") {
         if (category) {
-          this.setState({
-            category: false,
-            solution: false
-          });
+          this.showClue();
         } else {
-          this.setState(state => ({
-            solution: !state.solution
-          }));
+          this.toggleSolution();
         }
     } else if (event.key === "Escape" && !category && solution) {
       this.props.finishGame();
     }
+  }
+
+  showClue = () => {
+    this.setState({
+      category: false,
+      solution: false
+    });
+  }
+
+  toggleSolution = () => {
+    this.setState(state => ({
+      solution: !state.solution
+    }));
   }
 }
 
