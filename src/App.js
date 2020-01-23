@@ -1,10 +1,20 @@
 import React from 'react';
+import ReactGA from 'react-ga';
+
 import './App.css';
+
 import GameLoader from './GameLoader';
 import PlayerChooser from './PlayerChooser';
 import JeopardyBoard from './JeopardyBoard';
 import Scoreboard from './Scoreboard';
 import FinalJeopardy from './FinalJeopardy';
+
+ReactGA.initialize('UA-123778931-2', {
+  gaOptions: {
+    siteSpeedSampleRate: 100
+  }
+});
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends React.Component {
 
@@ -23,6 +33,10 @@ class App extends React.Component {
 
   render() {
     if (this.state.game === null) {
+      ReactGA.event({
+        category: 'Navigation',
+        action: 'Show Game Loader'
+      });
       return (
         <div className="app">
           <GameLoader
@@ -136,18 +150,33 @@ class App extends React.Component {
   }
 
   addPlayer = (name) => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Add Player',
+      label: name
+    });
     this.setState(state => ({
       players: [...state.players, {name: name, score: 0, correct: 0, incorrect: 0}]
     }));
   }
 
   categoryShown = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Show Category',
+      label: `${this.state.round}: ${this.state.game[this.state.round][this.state.categoriesShown].name}`
+    });
     this.setState(state => ({
       categoriesShown: state.categoriesShown + 1
     }));
   }
 
   chooseClue = (i, j) => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Show Clue',
+      label: `${this.state.round}: ${this.state.game[this.state.round][i].clues[j].clue} (${this.state.game[this.state.round][i].clues[j].solution})`
+    });
     this.setState(state => {
       let game = Object.assign({}, state.game);
       let round = game[state.round];
@@ -161,6 +190,10 @@ class App extends React.Component {
   }
 
   backToBoard = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Back to Board'
+    });
     this.setState({
       currentCategory: null,
       currentClue: null
@@ -168,6 +201,11 @@ class App extends React.Component {
   }
 
   downloadGame = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Download Game',
+      label: this.state.round
+    });
     const element = document.createElement("a");
     const file = new Blob([JSON.stringify({
       game: this.state.game,
@@ -181,18 +219,30 @@ class App extends React.Component {
   }
 
   finishGame = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Finish Game'
+    });
     this.setState({
       round: "done"
     });
   }
 
   playGame = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Play Game'
+    });
     this.setState({
       playing: true
     })
   }
 
   proceedToDouble = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Proceed to Double Jeopardy'
+    });
     this.setState({
       categoriesShown: 0,
       round: "double"
@@ -200,12 +250,22 @@ class App extends React.Component {
   }
 
   proceedToFinal = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Proceed to Final Jeopardy'
+    });
     this.setState({
       round: "final"
     });
   }
 
   updateGame = (data) => {
+    const categories = data.game.single.map(c => c.category).concat(data.game.double.map(c => c.category)).concat([data.game.final.category]).join(" - ").slice(0, 499)
+    ReactGA.event({
+      category: 'Game',
+      action: 'Upload Game',
+      label: categories
+    });
     this.setState(state => ({
       game: data.game,
       players: data.players !== undefined ? data.players : state.players,
@@ -215,6 +275,11 @@ class App extends React.Component {
   }
 
   updateScore = (player, value, correct) => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Update Score',
+      label: `${player} ${correct ? 'correct' : 'incorrect'} (${value})`
+    });
     this.setState(state => {
       const players = [...state.players];
       players[player].score += value;
