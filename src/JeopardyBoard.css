@@ -22,6 +22,47 @@ td {
     text-align: center;
 }
 
+.category-container {
+    height: 600px;
+}
+
+.category-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 600px;
+    background-color: #001699;
+    float: left;
+}
+
+.categorybox-enter {
+    margin-left: 110%;
+}
+
+.categorybox-enter-active {
+    margin-left: 0%;
+    transition: margin-left 1000ms ease;
+}
+
+.categorybox-exit {
+    margin-left: 0%;
+    position: absolute;
+}
+
+.categorybox-exit-active {
+    margin-left: -110%;
+    transition: margin-left 1000ms ease;
+}
+
+.category-box .category {
+    font-family: 'Swiss921', sans-serif;
+    text-transform: uppercase;
+    font-size: 120px;
+    padding-left: 100;
+}
+
 td.category-title {
     font-family: 'Swiss921', sans-serif;
     font-size: 28px;

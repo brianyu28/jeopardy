@@ -11,6 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      categoriesShown: 0,
       game: null,
       players: [],
       playing: false,
@@ -40,7 +41,7 @@ class App extends React.Component {
         </div>
       );
     } else if (this.state.round === "single" || this.state.round === "double") {
-      const { currentCategory, currentClue } = this.state;
+      const { categoriesShown, currentCategory, currentClue } = this.state;
       const board = this.state.game[this.state.round];
       
       // See if we should be able to proceed to Double Jeopardy
@@ -84,7 +85,9 @@ class App extends React.Component {
           <JeopardyBoard
             board={board}
             backToBoard={this.backToBoard}
+            categoryShown={this.categoryShown}
             chooseClue={this.chooseClue}
+            categoriesShown={categoriesShown}
             currentCategory={currentCategory}
             currentClue={currentClue}
           />
@@ -138,6 +141,12 @@ class App extends React.Component {
     }));
   }
 
+  categoryShown = () => {
+    this.setState(state => ({
+      categoriesShown: state.categoriesShown + 1
+    }));
+  }
+
   chooseClue = (i, j) => {
     this.setState(state => {
       let game = Object.assign({}, state.game);
@@ -185,6 +194,7 @@ class App extends React.Component {
 
   proceedToDouble = () => {
     this.setState({
+      categoriesShown: 0,
       round: "double"
     });
   }

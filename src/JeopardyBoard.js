@@ -1,5 +1,7 @@
 import React from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './JeopardyBoard.css';
+
 
 class JeopardyBoard extends React.Component {
   constructor(props) {
@@ -19,8 +21,14 @@ class JeopardyBoard extends React.Component {
   }
 
   render() {
-    const { board, currentCategory, currentClue } = this.props;
+    const { board, categoriesShown, currentCategory, currentClue } = this.props;
 
+    // First check for if we need to present categories
+    if (categoriesShown < board.length) {
+      return this.renderCategory(categoriesShown);
+    }
+
+    // Check if there is a clue to present
     if (currentCategory !== null && currentClue !== null) {
       return this.renderClue(
         board[currentCategory].category,
@@ -86,8 +94,35 @@ class JeopardyBoard extends React.Component {
     )
   }
 
+  renderCategory(index) {
+    const { board } = this.props;
+    return (
+      <div className="category-container">
+        <TransitionGroup>
+          <CSSTransition
+            key={index}
+            timeout={1000}
+            classNames="categorybox"
+          >
+            <div className="category-box">
+              <div className="category">
+                {board[index].category}
+              </div>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
+    );
+  }
+
   clueKeyPress = (event) => {
-    const { board, currentCategory, currentClue } = this.props;
+    const { board, categoriesShown, currentCategory, currentClue } = this.props;
+
+    // First check for categoriesShown
+    if (categoriesShown < board.length && (event.key === " " || event.key === "Enter")) {
+      this.props.categoryShown();
+    }
+
     if (currentCategory === null || currentClue === null) {
       return;
     }
