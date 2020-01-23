@@ -87,7 +87,7 @@ td.board-clue {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-family: 'Korinna-Bold', serif;
+    font-family: 'Korinna', serif;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 50px;
@@ -108,7 +108,7 @@ td.board-clue {
 
 .clue-category-label {
     color: white;
-    font-family: 'Korinna-Bold', serif;
+    font-family: 'Korinna', serif;
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
