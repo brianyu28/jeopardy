@@ -13,6 +13,20 @@
     font-family: 'Korinna', serif;
 }
 
-.game-loader input {
-    margin-top: 50px;
+.game-loader h2 {
+    font-family: 'Korinna', serif;
+    font-size: 30px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width: 200px;
+}
+
+.create-your-own {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
 }

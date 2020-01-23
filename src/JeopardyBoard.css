@@ -100,6 +100,7 @@ td.board-clue {
 .final-category {
     font-family: 'Swiss921', sans-serif;
     font-size: 90px;
+    font-weight: normal;
 }
 
 .daily-double {
