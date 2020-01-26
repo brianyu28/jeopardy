@@ -116,3 +116,16 @@ td.board-clue {
     font-size: 28px;
     padding: 10px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+.code {
+    font-family: 'Consolas', 'Fira Code', monospace;
+    text-transform: none;
+}
+
+.code-lines {
+    list-style-type: none;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    text-transform: none;
+    text-align: left;
+}
