@@ -40,7 +40,7 @@ class App extends React.Component {
       return (
         <div className="app">
           <GameLoader
-            updateGame={this.updateGame} 
+            updateGame={this.updateGame}
           />
         </div>
       );
@@ -57,7 +57,7 @@ class App extends React.Component {
     } else if (this.state.round === "single" || this.state.round === "double") {
       const { categoriesShown, currentCategory, currentClue } = this.state;
       const board = this.state.game[this.state.round];
-      
+
       // See if we should be able to proceed to Double Jeopardy
       let allowProceedToDouble = this.state.round === "single";
       if (allowProceedToDouble) {
@@ -278,7 +278,7 @@ class App extends React.Component {
     ReactGA.event({
       category: 'Game',
       action: 'Update Score',
-      label: `${player} ${correct ? 'correct' : 'incorrect'} (${value})`
+      label: `${this.state.players[player].name} ${correct ? 'correct' : 'incorrect'} (${value})`
     });
     this.setState(state => {
       const players = [...state.players];
