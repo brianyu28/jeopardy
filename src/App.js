@@ -81,6 +81,12 @@ class App extends React.Component {
         });
       }
 
+      // Allow games configurations to skip Double Jeopardy
+      if (allowProceedToDouble && this.state.game.double === undefined) {
+        allowProceedToDouble = false;
+        allowProceedToFinal = true;
+      }
+
       return (
         <div className="app">
           {currentCategory === null && currentClue === null && allowProceedToDouble &&
@@ -260,7 +266,7 @@ class App extends React.Component {
   }
 
   updateGame = (data) => {
-    const categories = data.game.single.map(c => c.category).concat(data.game.double.map(c => c.category)).concat([data.game.final.category]).join(" - ").slice(0, 499)
+    const categories = data.game.single.map(c => c.category).concat((data.game.double || []).map(c => c.category)).concat([data.game.final.category]).join(" - ").slice(0, 499)
     ReactGA.event({
       category: 'Game',
       action: 'Upload Game',
