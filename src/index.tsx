@@ -9,4 +9,3 @@ import "./fonts/Swiss921-BT_43276.ttf";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(<App />);
-

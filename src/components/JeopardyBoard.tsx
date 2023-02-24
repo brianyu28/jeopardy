@@ -5,16 +5,24 @@ import "./JeopardyBoard.css";
 
 interface JeopardyBoardProps {
   backToBoard: () => void;
-  board: GameRound,
+  board: GameRound;
   categoryShown: () => void;
-  categoriesShown: number,
+  categoriesShown: number;
   chooseClue: (i: number, j: number) => void;
-  currentCategory: number | null,
-  currentClue: number | null,
+  currentCategory: number | null;
+  currentClue: number | null;
 }
 
 function JeopardyBoard(props: JeopardyBoardProps) {
-  const { backToBoard, board, categoryShown, categoriesShown, chooseClue, currentCategory, currentClue } = props;
+  const {
+    backToBoard,
+    board,
+    categoryShown,
+    categoriesShown,
+    chooseClue,
+    currentCategory,
+    currentClue,
+  } = props;
 
   const [solution, setSolution] = useState(false);
   const [dailyDoubleScreenPresented, setDailyDoubleScreenPresented] =
@@ -85,7 +93,7 @@ function JeopardyBoard(props: JeopardyBoardProps) {
   // TODO: Eliminate this function, can just use categoryShown directly?
   function renderNextCategory() {
     categoryShown();
-  };
+  }
 
   function clueKeyPress(event: KeyboardEvent) {
     // First check for categoriesShown
@@ -111,22 +119,22 @@ function JeopardyBoard(props: JeopardyBoardProps) {
     } else if (event.key === "Escape") {
       returnToBoard();
     }
-  };
+  }
 
   function switchDDToClue() {
     setSolution(false);
     setDailyDoubleScreenPresented(true);
-  };
+  }
 
   function returnToBoard() {
     setSolution(false);
     setDailyDoubleScreenPresented(false);
     backToBoard();
-  };
+  }
 
   function toggleSolution() {
     setSolution(!solution);
-  };
+  }
 
   // First check for if we need to present categories
   if (categoriesShown < board.length) {
