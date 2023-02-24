@@ -14,6 +14,10 @@ export interface Player {
 }
 
 export type RoundName = "single" | "double" | "final" | "done";
+export const ROUND_SINGLE: RoundName = "single";
+export const ROUND_DOUBLE: RoundName = "double";
+export const ROUND_FINAL: RoundName = "final";
+export const ROUND_DONE: RoundName = "done";
 
 export interface Game {
   single: GameRound;

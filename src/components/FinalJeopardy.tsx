@@ -3,11 +3,11 @@ import { FinalRound } from "../types";
 
 interface FinalJeopardyProps {
   final: FinalRound;
-  finishGame: () => void;
+  onFinishGame: () => void;
 }
 
 function FinalJeopardy(props: FinalJeopardyProps) {
-  const { final, finishGame } = props;
+  const { final, onFinishGame } = props;
 
   const [category, setCategory] = useState(true);
   const [solution, setSolution] = useState(false);
@@ -36,7 +36,7 @@ function FinalJeopardy(props: FinalJeopardyProps) {
         toggleSolution();
       }
     } else if (event.key === "Escape" && !category && solution) {
-      finishGame();
+      onFinishGame();
     }
   }
 
@@ -48,7 +48,7 @@ function FinalJeopardy(props: FinalJeopardyProps) {
     );
   }
   return (
-    <div onClick={solution ? finishGame : toggleSolution} className="clue">
+    <div onClick={solution ? onFinishGame : toggleSolution} className="clue">
       <div className="clue-display">
         {final.html === true ? (
           <div

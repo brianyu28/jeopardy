@@ -1,31 +1,36 @@
 import { useState } from "react";
 
-import GameLoader from "./GameLoader";
-import PlayerChooser from "./PlayerChooser";
-import JeopardyBoard from "./JeopardyBoard";
-import Scoreboard from "./Scoreboard";
 import FinalJeopardy from "./FinalJeopardy";
-import { Game, GameData, GameRound, Player, RoundName } from "../types";
+import GameLoader from "./GameLoader";
+import JeopardyBoard from "./JeopardyBoard";
+import PlayerChooser from "./PlayerChooser";
+import Scoreboard from "./Scoreboard";
+import {
+  Game,
+  GameData,
+  GameRound,
+  Player,
+  RoundName,
+  ROUND_SINGLE,
+} from "../types";
 
 import "./App.css";
 
 function App() {
-  const [categoriesShown, setCategoriesShown] = useState(0);
   const [game, setGame] = useState<Game | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
-  const [playing, setPlaying] = useState(false);
-  const [round, setRound] = useState<RoundName>("single");
-  const [currentCategory, setCurrentCategory] = useState<number | null>(null);
-  const [currentClue, setCurrentClue] = useState<number | null>(null);
+  const [round, setRound] = useState<RoundName>(ROUND_SINGLE);
+  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [numCategoriesShown, setNumCategoriesShown] = useState(0);
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState<
+    number | null
+  >(null);
+  const [currentClueIndex, setCurrentClueIndex] = useState<number | null>(null);
 
   function updateGame(data: GameData) {
-    if (data.players !== undefined) {
-      setPlayers(data.players);
-    }
-    if (data.round !== undefined) {
-      setRound(data.round);
-    }
-    setPlaying(data.players !== undefined);
+    setPlayers(data.players || []);
+    setRound(data.round || ROUND_SINGLE);
+    setIsGameStarted(data.players !== undefined);
     setGame(data.game);
   }
 
@@ -34,37 +39,37 @@ function App() {
   }
 
   function playGame() {
-    setPlaying(true);
+    setIsGameStarted(true);
   }
 
-  function categoryShown() {
-    setCategoriesShown(categoriesShown + 1);
+  function handleCategoryShown() {
+    setNumCategoriesShown(numCategoriesShown + 1);
   }
 
-  function chooseClue(i: number, j: number) {
+  function chooseClue(categoryIndex: number, clueIndex: number) {
     let newGame: Game = Object.assign({}, game);
     let newRound: GameRound = (newGame as any)[round];
-    newRound[i].clues[j].chosen = true;
+    newRound[categoryIndex].clues[clueIndex].chosen = true;
     setGame(newGame);
-    setCurrentCategory(i);
-    setCurrentClue(j);
+    setCurrentCategoryIndex(categoryIndex);
+    setCurrentClueIndex(clueIndex);
   }
 
-  function updateScore(player: number, value: number, correct: boolean) {
+  function updateScore(playerIndex: number, value: number, correct: boolean) {
     const newPlayers = [...players];
-    players[player].score += value;
-    if (correct) players[player].correct++;
-    else players[player].incorrect++;
+    players[playerIndex].score += value;
+    if (correct) players[playerIndex].correct++;
+    else players[playerIndex].incorrect++;
     setPlayers(newPlayers);
   }
 
-  function backToBoard() {
-    setCurrentClue(null);
-    setCurrentCategory(null);
+  function returnToBoard() {
+    setCurrentClueIndex(null);
+    setCurrentCategoryIndex(null);
   }
 
   function proceedToDouble() {
-    setCategoriesShown(0);
+    setNumCategoriesShown(0);
     setRound("double");
   }
 
@@ -99,7 +104,7 @@ function App() {
     );
   }
 
-  if (!playing) {
+  if (!isGameStarted) {
     return (
       <div className="app">
         <PlayerChooser
@@ -146,8 +151,8 @@ function App() {
 
     return (
       <div className="app">
-        {currentCategory === null &&
-          currentClue === null &&
+        {currentCategoryIndex === null &&
+          currentClueIndex === null &&
           allowProceedToDouble && (
             <div>
               <button onClick={proceedToDouble} className="proceed-to">
@@ -155,8 +160,8 @@ function App() {
               </button>
             </div>
           )}
-        {currentCategory === null &&
-          currentClue === null &&
+        {currentCategoryIndex === null &&
+          currentClueIndex === null &&
           allowProceedToFinal && (
             <div>
               <button onClick={proceedToFinal} className="proceed-to">
@@ -167,25 +172,26 @@ function App() {
 
         <JeopardyBoard
           board={board}
-          backToBoard={backToBoard}
-          categoryShown={categoryShown}
+          backToBoard={returnToBoard}
+          categoryShown={handleCategoryShown}
           chooseClue={chooseClue}
-          categoriesShown={categoriesShown}
-          currentCategory={currentCategory}
-          currentClue={currentClue}
+          categoriesShown={numCategoriesShown}
+          currentCategory={currentCategoryIndex}
+          currentClue={currentClueIndex}
         />
         <Scoreboard
           players={players}
           currentValue={
-            currentCategory !== null && currentClue !== null
-              ? board[currentCategory].clues[currentClue].value
+            currentCategoryIndex !== null && currentClueIndex !== null
+              ? board[currentCategoryIndex].clues[currentClueIndex].value
               : null
           }
           updateScore={updateScore}
           wagering={
-            currentCategory !== null &&
-            currentClue !== null &&
-            board[currentCategory].clues[currentClue].dailyDouble === true
+            currentCategoryIndex !== null &&
+            currentClueIndex !== null &&
+            board[currentCategoryIndex].clues[currentClueIndex].dailyDouble ===
+              true
           }
           stats={false}
         />
@@ -198,7 +204,7 @@ function App() {
     const final = game.final;
     return (
       <div>
-        <FinalJeopardy final={final} finishGame={finishGame} />
+        <FinalJeopardy final={final} onFinishGame={finishGame} />
         <Scoreboard
           players={players}
           currentValue={0}

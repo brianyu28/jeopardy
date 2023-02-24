@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Clue, GameRound } from "../types";
 import "./JeopardyBoard.css";
@@ -8,7 +8,7 @@ interface JeopardyBoardProps {
   board: GameRound;
   categoryShown: () => void;
   categoriesShown: number;
-  chooseClue: (i: number, j: number) => void;
+  chooseClue: (categoryIndex: number, clueIndex: number) => void;
   currentCategory: number | null;
   currentClue: number | null;
 }
@@ -37,7 +37,7 @@ function JeopardyBoard(props: JeopardyBoardProps) {
 
   function renderCategory(index: number) {
     return (
-      <div onClick={renderNextCategory} className="category-container">
+      <div onClick={categoryShown} className="category-container">
         <TransitionGroup>
           <CSSTransition key={index} timeout={1000} classNames="categorybox">
             <div className="category-box">
@@ -88,11 +88,6 @@ function JeopardyBoard(props: JeopardyBoardProps) {
         </div>
       </div>
     );
-  }
-
-  // TODO: Eliminate this function, can just use categoryShown directly?
-  function renderNextCategory() {
-    categoryShown();
   }
 
   function clueKeyPress(event: KeyboardEvent) {
