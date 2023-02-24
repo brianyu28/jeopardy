@@ -1,0 +1,22 @@
+.proceed-to {
+  background-color: #001699;
+  color: white;
+  width: 500px;
+  height: 50px;
+  font: Arial;
+  font-size: 28px;
+  border-radius: 5px;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.download {
+  background-color: #404040;
+  border: none;
+  margin-top: 100px;
+  border-radius: 3px;
+}

@@ -1,0 +1,32 @@
+.game-loader {
+  text-align: center;
+}
+
+.game-loader h1 {
+  font-family: "Korinna", serif;
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.game-loader p {
+  font-size: 20px;
+  font-family: "Korinna", serif;
+}
+
+.game-loader h2 {
+  font-family: "Korinna", serif;
+  font-size: 30px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  width: 200px;
+}
+
+.create-your-own {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+}

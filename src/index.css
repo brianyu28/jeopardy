@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'Swiss921';
-    src: local('Swiss921'), url(./fonts/Swiss921-BT_43276.ttf) format('truetype');
+  font-family: "Swiss921";
+  src: local("Swiss921"), url(./fonts/Swiss921-BT_43276.ttf) format("truetype");
 }
 
 @font-face {
-    font-family: 'Korinna';
-    src: local('Korinna'), url(./fonts/korinna.ttf) format('truetype');
+  font-family: "Korinna";
+  src: local("Korinna"), url(./fonts/korinna.ttf) format("truetype");
 }
