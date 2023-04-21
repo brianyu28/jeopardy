@@ -13,6 +13,7 @@ import {
   RoundName,
   ROUND_SINGLE,
 } from "../types";
+import { logEvent } from "../util/analytics";
 
 import "./App.css";
 
@@ -35,18 +36,22 @@ function App() {
   }
 
   function addPlayer(name: string) {
+    logEvent("Add Player");
     setPlayers([...players, { name, score: 0, correct: 0, incorrect: 0 }]);
   }
 
   function playGame() {
+    logEvent("Play Game");
     setIsGameStarted(true);
   }
 
   function handleCategoryShown() {
+    logEvent("Show Category");
     setNumCategoriesShown(numCategoriesShown + 1);
   }
 
   function chooseClue(categoryIndex: number, clueIndex: number) {
+    logEvent("Show Clue");
     let newGame: Game = Object.assign({}, game);
     let newRound: GameRound = (newGame as any)[round];
     newRound[categoryIndex].clues[clueIndex].chosen = true;
@@ -56,6 +61,7 @@ function App() {
   }
 
   function updateScore(playerIndex: number, value: number, correct: boolean) {
+    logEvent("Update Score");
     const newPlayers = [...players];
     players[playerIndex].score += value;
     if (correct) players[playerIndex].correct++;
@@ -64,20 +70,24 @@ function App() {
   }
 
   function returnToBoard() {
+    logEvent("Back to Board");
     setCurrentClueIndex(null);
     setCurrentCategoryIndex(null);
   }
 
   function proceedToDouble() {
+    logEvent("Proceed to Double Jeopardy");
     setNumCategoriesShown(0);
     setRound("double");
   }
 
   function proceedToFinal() {
+    logEvent("Proceed to Final Jeopardy");
     setRound("final");
   }
 
   function finishGame() {
+    logEvent("Finish Game");
     setRound("done");
   }
 

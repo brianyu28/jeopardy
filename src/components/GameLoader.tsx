@@ -2,6 +2,7 @@ import React, { ChangeEvent } from "react";
 
 import { GameData } from "../types";
 import sample_game from "../assets/sample_game.json";
+import { logEvent } from "../util/analytics";
 
 import "./GameLoader.css";
 
@@ -23,6 +24,7 @@ function GameLoader(props: GameLoaderProps) {
   }
 
   function handleGameUpload(event: ChangeEvent<HTMLInputElement>) {
+    logEvent("Upload Game");
     if (event.target.files === null) {
       return;
     }
