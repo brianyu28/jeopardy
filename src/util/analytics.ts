@@ -13,3 +13,13 @@ export const logEvent = (action: string) => {
         });
     }
 }
+
+export const logEventWithLabel = (action: string, label: string) => {
+    if (logAnalytics) {
+        ReactGA.event({
+            category: "Game",
+            action,
+            label,
+        });
+    }
+}

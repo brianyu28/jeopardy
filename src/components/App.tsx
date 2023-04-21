@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FinalJeopardy from "./FinalJeopardy";
 import GameLoader from "./GameLoader";
@@ -13,7 +13,8 @@ import {
   RoundName,
   ROUND_SINGLE,
 } from "../types";
-import { logEvent } from "../util/analytics";
+import { logEvent, logEventWithLabel } from "../util/analytics";
+import { preloadedGames } from "../util/preloaded_games";
 
 import "./App.css";
 
@@ -27,6 +28,24 @@ function App() {
     number | null
   >(null);
   const [currentClueIndex, setCurrentClueIndex] = useState<number | null>(null);
+
+  // Specify a game in the query string as /?game=GAME_ID loads a pre-loaded game
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameId = urlParams.get("game");
+    if (gameId === null) {
+      return;
+    }
+
+    const preloadedGame: GameData | undefined = (preloadedGames as any)[gameId];
+    if (preloadedGame === undefined) {
+      return;
+    }
+
+    window.history.replaceState({}, document.title, "/");
+    logEventWithLabel("Load Preloaded Game", gameId);
+    updateGame(preloadedGame);
+  }, []);
 
   function updateGame(data: GameData) {
     setPlayers(data.players || []);
