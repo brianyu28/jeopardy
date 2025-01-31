@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.89153300.css",
-    "main.js": "/static/js/main.c64ccf65.js",
+    "main.js": "/static/js/main.66cdf75a.js",
     "static/media/Swiss921-BT_43276.ttf": "/static/media/Swiss921-BT_43276.10ddcaee075a6fe89dbb.ttf",
     "static/media/korinna.ttf": "/static/media/korinna.035454f8ecc15f8cb240.ttf",
     "index.html": "/index.html",
     "main.89153300.css.map": "/static/css/main.89153300.css.map",
-    "main.c64ccf65.js.map": "/static/js/main.c64ccf65.js.map"
+    "main.66cdf75a.js.map": "/static/js/main.66cdf75a.js.map"
   },
   "entrypoints": [
     "static/css/main.89153300.css",
-    "static/js/main.c64ccf65.js"
+    "static/js/main.66cdf75a.js"
   ]
 }
