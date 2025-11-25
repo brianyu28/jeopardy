@@ -25,3 +25,20 @@
   - A `correct` key with the player's number of correct responses so far (should initially be 0)
   - An `incorrect` key with the player's number of incorrect responses so far (should initially be 0)
 - An optional `round` key indicating which round to begin with (should initially be "single")
+
+#### Game bundle format
+
+This allowes you to include images for cues locally without needing to host them. To get started create a .zip file which the following layout:
+
+```
+my-jeopardy-bundle.zip
+|- game.json
+|- images/
+  |- daily_double.png
+  |- presidents.jpg
+```
+
+- The zip **must** contain a `game.json` file somewhere in your Bundle.
+- Place every image inside the bundle. All non-`game.json` files can be used in the `game.json`
+- In `game.json`, set a clue's image to the relative path prefixed with `$`, e.g. `"image": "$images/daily_double.png"`.
+- When the bundle is uploaded, the loader replaces every `$` reference with an in-memory object URL.
