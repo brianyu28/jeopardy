@@ -52,6 +52,9 @@ function JeopardyBoard(props: JeopardyBoardProps) {
   function renderClue(categoryName: string, clue: Clue, value: number) {
     const showDailyDoubleScreen =
       clue.dailyDouble && !dailyDoubleScreenPresented;
+    const hasImage = !!clue.image && !showDailyDoubleScreen && !solution;
+    const contentClass = hasImage ? "has-image" : "no-image";
+    const solutionClass = solution && !showDailyDoubleScreen ? " solution-shown" : "";
     return (
       <div
         onClick={
@@ -67,24 +70,28 @@ function JeopardyBoard(props: JeopardyBoardProps) {
           {categoryName} - ${clue.value}
         </div>
         <div
-          className={
-            showDailyDoubleScreen ? "clue-display daily-double" : "clue-display"
-          }
+          className={showDailyDoubleScreen ? "clue-display daily-double" : "clue-display"}
         >
-          <br />
-          {showDailyDoubleScreen ? (
-            "Daily Double"
-          ) : clue.html === true ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: solution ? clue.solution : clue.clue,
-              }}
-            />
-          ) : solution ? (
-            clue.solution
-          ) : (
-            clue.clue
-          )}
+          <div className={`clue-content ${contentClass}${solutionClass}`}>
+            {hasImage && (
+              <img src={clue.image} alt="Clue" className="clue-image" />
+            )}
+            <div className="clue-text">
+              {showDailyDoubleScreen ? (
+                "Daily Double"
+              ) : clue.html === true ? (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: solution ? clue.solution : clue.clue,
+                  }}
+                />
+              ) : solution ? (
+                clue.solution
+              ) : (
+                clue.clue
+              )}
+            </div>
+          </div>
         </div>
       </div>
     );

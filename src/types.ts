@@ -44,6 +44,8 @@ export interface Clue {
 
   // Tracks whether the clue has already been played
   chosen: boolean | undefined;
+
+  image?: string;
 }
 
 export interface FinalRound {
